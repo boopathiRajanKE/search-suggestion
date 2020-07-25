@@ -3,7 +3,7 @@ import fetch from "isomorphic-unfetch"
 import { debounce, textHighLighter } from "../utils"
 import { searchIcon, closeIcon } from "../assets/icons"
 
-function Index(props) {
+function Index() {
   const [inputValue, setInputValue] = React.useState("")
   const [searchTerm, setSearchTerm] = React.useState("")
   const [mount, setMount] = React.useState(false)
@@ -48,11 +48,10 @@ function Index(props) {
     [dataResponse.data, cursor]
   )
 
-  const onMouseEnterItem = (e) => {
-    console.log("set")
+  const onMouseEnterItem = React.useCallback((e) => {
     const value = e.target.getAttribute("index")
     if (value !== null) setCursor(+value)
-  }
+  }, [])
 
   React.useEffect(() => {
     setMount(true)
